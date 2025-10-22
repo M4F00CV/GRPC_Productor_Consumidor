@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package worker;
+
+service WorkCoordinator {
+  rpc GetTask(TaskRequest) returns (Task);
+  rpc SubmitResult(TaskResult) returns (SubmitResponse);
+}
+
+message TaskRequest {
+  string client_id = 1;
+}
+
+message Task {
+  string task_id = 1; // Un ID único para rastrear esta tarea
+  int32 num1 = 2;
+  int32 num2 = 3;
+  int32 num3 = 4;
+}
+
+message TaskResult {
+  string task_id = 1;   // El ID de la tarea que se resolvió
+  string client_id = 2; // Un ID único para el cliente (para el leaderboard)
+  int32 result = 3;    // El resultado de la función (ej. la suma)
+}
+
+message SubmitResponse {
+  bool stop_signal = 1;      // true si el cliente debe dejar de pedir tareas
+  int64 total_server_sum = 2; // La suma total actual en el servidor
+}
