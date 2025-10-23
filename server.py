@@ -7,7 +7,6 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from GRPC_Productor_Consumidor.proto import productor_pb2
 from GRPC_Productor_Consumidor.proto import productor_pb2_grpc
 
-
 # Importar la implementación del servicio (la nueva)
 from servicios.servicios import WorkerCoordinatorServicer
 

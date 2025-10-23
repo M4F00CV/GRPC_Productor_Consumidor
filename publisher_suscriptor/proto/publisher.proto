@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package publisher;
+
+service publicador {
+    rpc PedirDatos(reconocer_cliente) returns (envio_datos) {}
+    rpc EnviarResultado(resultado_cliente) returns (resultados_server) {}
+}
+
+message reconocer_cliente{
+    string client_id = 1;
+    bool elecion_envio = 2;
+}
+
+message envio_datos{
+    string rastreador=1;
+    int32 num1 = 2;
+    int32 num2 = 3;
+    int32 num3 = 4;
+}
+
+message resultado_cliente{
+    string id_cliente=1;
+    string rastreador=2;
+    int32 resultado = 3;
+}
+
+message resultados_server{
+    bool fin_acciones = 1;  
+    int64 total_final = 2; 
+}
